@@ -29,7 +29,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0        # ← ВАЖЛИВО для SonarCloud
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -75,10 +75,9 @@ jobs:
           reporter: github-pr-review
           level: info
 
-      - name: SonarCloud Scan          # ← НОВИЙ КРОК
-        uses: SonarSource/sonarcloud-github-action@master
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarqube-scan-action@v6
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Check develop branch changes
